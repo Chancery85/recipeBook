@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-offset-3">
+    <app-alert
+      (close)="onHandleError()"
+      *ngIf="error"
+      [message]="error">
+    </app-alert>
+    <form [formGroup]="loginForm" (ngSubmit)="submit();" *ngIf="!isLoading">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input placeholder="email" type="email" id="email" class="form-control" formControlName="email">
+      </div>
+      <div *ngIf="isLoginMode && formControls.email.errors && formControls.email.touched" class="help-block">
+        <div *ngIf="formControls.email.errors.required">Email is required</div>
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input placeholder="password" type="password" id="password" class="form-control" formControlName="password">
+      </div>
+      <div *ngIf="isLoginMode && formControls.password.errors && formControls.password.touched" class="help-block">
+        <div *ngIf="formControls.password.errors.required">Password is required</div>
+      </div>
+      <div>
+        <div class="col-xs-12 col-md-3" style="padding-left:0; margin-bottom:1rem;">
+          <button class="btn btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">
+            {{ isLoginMode ? 'Login' : 'Sign Up' }}
+          </button>
+        </div>
+        <div class="col-xs-12 col-md-3" style="padding-left:0; margin-bottom:1rem;">
+          <button class="btn btn-primary btn-block" (click)="onSwitchMode()" type="button">
+            {{ isLoginMode ? 'Switch to Sign Up' : 'Switch to Login' }}
+          </button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="isLoading" style="text-align:center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </div>
+</div>
