@@ -5,6 +5,7 @@
       *ngIf="error"
       [message]="error">
     </app-alert>
+    <p>If just testing the app. Please use <strong>test@test.com</strong> with password <strong>testing</strong></p>
     <form [formGroup]="loginForm" (ngSubmit)="submit();" *ngIf="!isLoading">
       <div class="form-group">
         <label for="email">E-mail</label>
